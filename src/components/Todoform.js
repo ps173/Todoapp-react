@@ -15,6 +15,8 @@ function Todoform (props){
       text: input
     });
 
+    localStorage.setItem(input , Math.floor(Math.random()*10000) )
+
     setInput('');
   }
 

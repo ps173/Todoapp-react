@@ -4,6 +4,7 @@ import Todoform from "./Todoform"
 
 function Todolist(){
   const [todos, setTodos] = useState([])
+
   const addTodo = todo => {
     let regex = /[^\s]+/g
     if (todo.text===''){
@@ -14,8 +15,18 @@ function Todolist(){
       setTodos(newTodos)
       console.log(todos)
     }
-
   }
+
+  const removeTodo = e =>{
+    let element = e.target
+    const removeArr = [...todos].filter(todo => todo.text !== e.target.innerText)
+
+    localStorage.removeItem(e.target.innerText)
+
+    setTodos(removeArr)
+  }
+
+
   return (
     <>
       <nav className="navbar dark2">
@@ -24,11 +35,13 @@ function Todolist(){
         </div>
       </nav> 
      <div className="m-4 box dark">
-        <h1>What's up for today?? </h1>
+        <h1>What's up for today? </h1>
         <Todoform onSubmit={addTodo}/>
      </div>
      <ol className="todo-list">
-       {todos.map(obj => (<Todo todo={obj}/>))}
+       {
+          todos.map(obj => (<Todo todo={obj} removeItem={removeTodo}/>))
+       }
      </ol>
     </>
   )

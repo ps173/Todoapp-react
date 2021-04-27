@@ -1,7 +1,7 @@
 import React,{useState} from 'react';
 import Todolist from "./Todolist"
 
-function Todo({todo}){
+function Todo({todo,removeItem}){
 
 const strikeItem = e => {
   let element = e.target
@@ -14,13 +14,7 @@ const strikeItem = e => {
   }
 }
 
-const removeItem = e => {
-  let element = e.target
-  console.log(todo) 
-  element.remove();
-}
-
-  return (
+return (
    <>
      <li 
     className="box dark m-4"
